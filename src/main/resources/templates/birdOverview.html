@@ -10,14 +10,18 @@
 
 <table>
     <tr>
-        <th>Bird Name</th>
-        <th>Bird Family</th>
+        <th>Bird Species</th>
+        <th>Bird Genus</th>
     </tr>
     <tr th:each="bird : ${allBirds}">
-        <td th:text="${bird.birdName}"></td>
-        <td th:text="${bird.birdFamily}"></td>
+        <td th:text="${bird.birdSpecies}"></td>
+        <td th:text="${bird.birdGenus}"></td>
     </tr>
 </table>
+
+<p>
+    <a th:href="@{/bird/new}">Add a new bird species</a>
+</p>
 
 
 </body>

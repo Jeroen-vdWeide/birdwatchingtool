@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add a new bird species</title>
 </head>
 <body>
 
+<h1>Add a new bird species</h1>
+
+<form th:action="@{/bird/new}" method="post" th:object="${bird}">
+    <table>
+        <tr>
+            <td><label for="speciesField">Species</label></td>
+            <td><label for="genusField">Genus</label></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" id="speciesField" th:field="*{birdSpecies}" />
+            </td>
+            <td>
+                <input type="text" id="genusField" th:field="*{birdGenus}" />
+            </td>
+        </tr>
+    </table>
+
+    <input type="submit" value="Save bird" />
+</form>
 </body>
 </html>

@@ -15,12 +15,12 @@ public class Bird {
 
     @Id @GeneratedValue
     private Long birdId;
-    private String birdName;
-    private String birdFamily;
+    private String birdSpecies;
+    private String birdGenus;
 
-    public Bird(String birdName, String birdFamily) {
-        this.birdName = birdName;
-        this.birdFamily = birdFamily;
+    public Bird(String birdSpecies, String birdGenus) {
+        this.birdSpecies = birdSpecies;
+        this.birdGenus = birdGenus;
     }
 
     public Bird() {
@@ -35,19 +35,19 @@ public class Bird {
         this.birdId = birdId;
     }
 
-    public String getBirdName() {
-        return birdName;
+    public String getBirdSpecies() {
+        return birdSpecies;
     }
 
-    public void setBirdName(String birdName) {
-        this.birdName = birdName;
+    public void setBirdSpecies(String birdName) {
+        this.birdSpecies = birdName;
     }
 
-    public String getBirdFamily() {
-        return birdFamily;
+    public String getBirdGenus() {
+        return birdGenus;
     }
 
-    public void setBirdFamily(String birdFamily) {
-        this.birdFamily = birdFamily;
+    public void setBirdGenus(String birdFamily) {
+        this.birdGenus = birdFamily;
     }
 }
