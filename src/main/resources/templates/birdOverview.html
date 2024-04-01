@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Overview of all birds</title>
+</head>
+<body>
+
+<h1>Overview of all birds </h1>
+
+<table>
+    <tr>
+        <th>Bird Name</th>
+        <th>Bird Family</th>
+    </tr>
+    <tr th:each="bird : ${allBirds}">
+        <td th:text="${bird.birdName}"></td>
+        <td th:text="${bird.birdFamily}"></td>
+    </tr>
+</table>
+
+
+</body>
+</html>
