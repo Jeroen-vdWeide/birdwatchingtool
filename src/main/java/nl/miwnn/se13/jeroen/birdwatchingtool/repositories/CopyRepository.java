@@ -1,8 +1,8 @@
 package nl.miwnn.se13.jeroen.birdwatchingtool.repositories;
 
-import nl.miwnn.se13.jeroen.birdwatchingtool.model.Bird;
+import nl.miwnn.se13.jeroen.birdwatchingtool.model.Copy;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface BirdRepository extends JpaRepository<Bird, Long> {
+public interface CopyRepository extends JpaRepository<Copy, Long> {
 }

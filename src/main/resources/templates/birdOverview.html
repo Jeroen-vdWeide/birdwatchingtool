@@ -12,10 +12,16 @@
     <tr>
         <th>Bird Species</th>
         <th>Bird Genus</th>
+        <th>Highscore</th>
+        <th>Total Copies</th>
+        <th>New Sighting</th>
     </tr>
     <tr th:each="bird : ${allBirds}">
         <td th:text="${bird.birdSpecies}"></td>
         <td th:text="${bird.birdGenus}"></td>
+        <td th:text="${bird.mostObservedCopiesInADay}"></td>
+        <td th:text="${bird.totalNumberOfCopies}"></td>
+        <td><a th:href="@{/copy/new/{birdId}(birdId = ${bird.birdId})}">Add copy</a></td>
     </tr>
 </table>
 

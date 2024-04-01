@@ -3,12 +3,19 @@ package nl.miwnn.se13.jeroen.birdwatchingtool.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
  * @author Jeroen van der Weide
  * <p>
- * Represents a bird that can have specimens
+ * Represents a bird species of a certain genus,
+ * that can have multiple copies observed
  **/
 @Entity
 public class Bird {
@@ -18,6 +25,10 @@ public class Bird {
     private String birdSpecies;
     private String birdGenus;
 
+    @OneToMany(mappedBy = "bird")
+    private List<Copy> copies;
+
+
     public Bird(String birdSpecies, String birdGenus) {
         this.birdSpecies = birdSpecies;
         this.birdGenus = birdGenus;
@@ -26,6 +37,33 @@ public class Bird {
     public Bird() {
 
     }
+
+    public int getMostObservedCopiesInADay() {
+        Map<LocalDate, Integer> observationsPerDay = new HashMap<>();
+
+
+        for (Copy copy : copies) {
+            LocalDate observationDate = copy.getObservingDate();
+            observationsPerDay.put(observationDate,
+                    observationsPerDay.getOrDefault(observationDate, 0) + 1);
+        }
+
+
+        int maxCount = 0;
+        for (int count : observationsPerDay.values()) {
+            if (count > maxCount) {
+                maxCount = count;
+            }
+        }
+
+        return maxCount;
+    }
+
+    public int getTotalNumberOfCopies(){
+        return copies.size();
+    }
+
+
 
     public Long getBirdId() {
         return birdId;
