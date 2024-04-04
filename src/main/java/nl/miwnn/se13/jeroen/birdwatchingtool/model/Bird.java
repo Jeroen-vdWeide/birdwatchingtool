@@ -1,14 +1,12 @@
 package nl.miwnn.se13.jeroen.birdwatchingtool.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -25,18 +23,12 @@ public class Bird {
     private String birdSpecies;
     private String birdGenus;
 
+    @ManyToMany
+    private Set<BirdFood> birdFoods;
+
     @OneToMany(mappedBy = "bird")
     private List<Copy> copies;
 
-
-    public Bird(String birdSpecies, String birdGenus) {
-        this.birdSpecies = birdSpecies;
-        this.birdGenus = birdGenus;
-    }
-
-    public Bird() {
-
-    }
 
     public int getMostObservedCopiesInADay() {
         Map<LocalDate, Integer> observationsPerDay = new HashMap<>();
@@ -87,5 +79,13 @@ public class Bird {
 
     public void setBirdGenus(String birdFamily) {
         this.birdGenus = birdFamily;
+    }
+
+    public Set<BirdFood> getBirdFoods() {
+        return birdFoods;
+    }
+
+    public void setBirdFoods(Set<BirdFood> birdFoods) {
+        this.birdFoods = birdFoods;
     }
 }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bird Food Overview</title>
+</head>
+<body>
+
+<h1>Overview of bird food used for birdwatching </h1>
+
+<table>
+    <tr>
+        <th>Food</th>
+        <th></th>
+    </tr>
+    <tr th:each="birdfood : ${allBirdFood}">
+        <td th:text="${birdfood.birdFoodName}"></td>
+        <td></td>
+    </tr>
+    <form th:action="@{/bird-food/new}" method="post" th:object="${newBirdFood}">
+        <tr>
+            <td><input type="text" th:field="*{birdFoodName}"></td>
+            <td><input type="submit" value="Save new bird food"></td>
+        </tr>
+    </form>
+
+</table>
+
+<p>
+    <a th:href="@{/}">Return to overview of all birds</a>
+</p>
+</body>
+</html>

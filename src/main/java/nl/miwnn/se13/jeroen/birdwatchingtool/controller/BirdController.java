@@ -2,6 +2,7 @@ package nl.miwnn.se13.jeroen.birdwatchingtool.controller;
 
 
 import nl.miwnn.se13.jeroen.birdwatchingtool.model.Bird;
+import nl.miwnn.se13.jeroen.birdwatchingtool.repositories.BirdFoodRepository;
 import nl.miwnn.se13.jeroen.birdwatchingtool.repositories.BirdRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,9 +20,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class BirdController {
+    private final BirdFoodRepository birdFoodRepository;
     private final BirdRepository birdRepository;
 
-    public BirdController(BirdRepository birdRepository) {
+    public BirdController(BirdFoodRepository birdFoodRepository, BirdRepository birdRepository) {
+        this.birdFoodRepository = birdFoodRepository;
         this.birdRepository = birdRepository;
     }
 
@@ -36,6 +39,7 @@ public class BirdController {
     @GetMapping("/bird/new")
     private String showBirdForm(Model model) {
         model.addAttribute("bird", new Bird());
+        model.addAttribute("allBirdFood",birdFoodRepository.findAll());
 
         return "birdForm";
     }

@@ -13,6 +13,7 @@
         <tr>
             <td><label for="speciesField">Species</label></td>
             <td><label for="genusField">Genus</label></td>
+            <td><label for="birdFoodField">Bird food used</label></td>
         </tr>
         <tr>
             <td>
@@ -21,10 +22,22 @@
             <td>
                 <input type="text" id="genusField" th:field="*{birdGenus}" />
             </td>
+            <td>
+                <select id ="birdFoodField" th:field="*{birdFoods}" multiple>
+                    <option th:each="birdfood : ${allBirdFood}"
+                            th:text="${birdfood.birdFoodName}"
+                            th:value="${birdfood.birdFoodId}">
+                    </option>
+                </select>
+            </td>
+
         </tr>
     </table>
 
     <input type="submit" value="Save bird" />
 </form>
+<p>
+    <a th:href="@{/}">Return to overview of all birds</a>
+</p>
 </body>
 </html>
