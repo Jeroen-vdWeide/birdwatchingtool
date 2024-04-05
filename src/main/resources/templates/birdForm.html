@@ -9,6 +9,7 @@
 <h1>Add a new bird species</h1>
 
 <form th:action="@{/bird/new}" method="post" th:object="${bird}">
+    <input type="hidden" th:field="*{birdId}">
     <table>
         <tr>
             <td><label for="speciesField">Species</label></td>

@@ -24,9 +24,9 @@
         <td th:text="${bird.mostObservedCopiesInADay}"></td>
         <td th:text="${bird.totalNumberOfCopies}"></td>
 
-        <td><a th:href="@{/copy/new/{birdId}(birdId = ${bird.birdId})}">Add copy</a></td>
+        <td><a th:href="@{/copy/new/{birdSpecies}(birdSpecies = ${bird.birdSpecies})}">Add copy</a></td>
         <td></td>
-        <td><a th:href="@{/bird/edit/{birdFoodName}(birdFoodName = ${bird.birdFoods})}">Edit bird</a></td>
+        <td><a th:href="@{/bird/edit/{birdSpecies}(birdSpecies =${bird.birdSpecies})}">Edit bird</a></td>
     </tr>
 </table>
 

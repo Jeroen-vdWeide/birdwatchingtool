@@ -20,7 +20,10 @@ public class Bird {
 
     @Id @GeneratedValue
     private Long birdId;
+
+    @Column(unique = true)
     private String birdSpecies;
+
     private String birdGenus;
 
     @ManyToMany

@@ -26,9 +26,9 @@ public class CopyController {
         this.copyRepository = copyRepository;
     }
 
-    @GetMapping("/copy/new/{birdId}")
-    private String createNewCopy(@PathVariable("birdId") Long birdId) {
-        Optional<Bird> optionalBird = birdRepository.findById(birdId);
+    @GetMapping("/copy/new/{birdSpecies}")
+    private String createNewCopy(@PathVariable("birdSpecies") String birdSpecies) {
+        Optional<Bird> optionalBird = birdRepository.findByBirdSpecies(birdSpecies);
 
         if (optionalBird.isPresent()){
             Copy copy = new Copy();

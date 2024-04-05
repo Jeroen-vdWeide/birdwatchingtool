@@ -9,7 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.Optional;
 
 
 /**
@@ -45,13 +48,33 @@ public class BirdController {
     }
 
     @PostMapping("/bird/new")
-    private String saveBird(@ModelAttribute("book") Bird birdToBeSaved, BindingResult result) {
+    private String saveBird(@ModelAttribute("bird") Bird birdToBeSaved, BindingResult result) {
+        if (birdToBeSaved.getBirdId() == null
+                && birdRepository.findByBirdSpecies(birdToBeSaved.getBirdSpecies()).isPresent()){
+            return "redirect:/bird/new";
+        }
+
         if (!result.hasErrors()) {
             birdRepository.save(birdToBeSaved);
         }
 
         return "redirect:/";
     }
+
+    @GetMapping("/bird/edit/{birdSpecies}")
+    private String showEditBirdForm(@PathVariable("birdSpecies") String birdSpecies, Model model){
+        Optional<Bird> bird = birdRepository.findByBirdSpecies(birdSpecies);
+
+        if (bird.isEmpty()) {
+            return "redirect:/";
+        }
+
+        model.addAttribute("bird", bird.get());
+        model.addAttribute("allBirdFood",birdFoodRepository.findAll());
+
+        return "birdForm";
+    }
+
 
 
 
