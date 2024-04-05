@@ -1,42 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:replace="~{fragments/general :: baseHeader(~{:: title})}">
     <title>Overview of all birds</title>
 </head>
 <body>
 
-<h1>Overview of all birds </h1>
+<div th:replace="~{fragments/general :: navbar}"></div>
 
-<table>
-    <tr>
-        <th>Bird Species</th>
-        <th>Bird Genus</th>
-        <th>Bird food</th>
-        <th>Highscore</th>
-        <th>Total Sightings</th>
+<div class="container">
+    <h1>Overview of all birds </h1>
 
-    </tr>
-    <tr th:each="bird : ${allBirds}">
-        <td th:text="${bird.birdSpecies}"></td>
-        <td th:text="${bird.birdGenus}"></td>
-        <td th:text="${bird.birdFoods}"></td>
-        <td th:text="${bird.mostObservedCopiesInADay}"></td>
-        <td th:text="${bird.totalNumberOfCopies}"></td>
+    <table>
+        <tr>
+            <th>Bird Species</th>
+            <th>Bird Genus</th>
+            <th>Bird food</th>
+            <th>Highscore</th>
+            <th>Total Sightings</th>
 
-        <td><a th:href="@{/copy/new/{birdSpecies}(birdSpecies = ${bird.birdSpecies})}">Add copy</a></td>
-        <td></td>
-        <td><a th:href="@{/bird/edit/{birdSpecies}(birdSpecies =${bird.birdSpecies})}">Edit bird</a></td>
-    </tr>
-</table>
+        </tr>
+        <tr th:each="bird : ${allBirds}">
+            <td th:text="${bird.birdSpecies}"></td>
+            <td th:text="${bird.birdGenus}"></td>
+            <td th:text="${bird.birdFoods}"></td>
+            <td th:text="${bird.mostObservedCopiesInADay}"></td>
+            <td th:text="${bird.totalNumberOfCopies}"></td>
 
-<p>
-    <a th:href="@{/bird/new}">Add a new bird species</a>
-</p>
-<p>
-    <a th:href="@{/bird-food}">Overview of bird food</a>
-</p>
+            <td><a th:href="@{/copy/new/{birdSpecies}(birdSpecies = ${bird.birdSpecies})}">Add copy</a></td>
+            <td></td>
+            <td><a th:href="@{/bird/edit/{birdSpecies}(birdSpecies =${bird.birdSpecies})}">Edit bird</a></td>
+        </tr>
+    </table>
 
+    <p>
+        <a th:href="@{/bird/new}">Add a new bird species</a>
+    </p>
+</div>
+
+<div th:replace="~{fragments/general :: footer}"></div>
+<div th:replace="~{fragments/general :: bottomScripts}"></div>
 
 </body>
 </html>

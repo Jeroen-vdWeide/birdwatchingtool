@@ -31,7 +31,7 @@ public class BirdController {
         this.birdRepository = birdRepository;
     }
 
-    @GetMapping("/")
+    @GetMapping({"/", "/bird"})
     private String showBirdOverview(Model model) {
 
         model.addAttribute("allBirds", birdRepository.findAll());

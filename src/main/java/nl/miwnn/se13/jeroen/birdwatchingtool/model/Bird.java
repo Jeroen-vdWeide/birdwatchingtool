@@ -91,4 +91,12 @@ public class Bird {
     public void setBirdFoods(Set<BirdFood> birdFoods) {
         this.birdFoods = birdFoods;
     }
+
+    public List<Copy> getCopies() {
+        return copies;
+    }
+
+    public void setCopies(List<Copy> copies) {
+        this.copies = copies;
+    }
 }
