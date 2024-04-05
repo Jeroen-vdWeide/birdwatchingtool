@@ -20,7 +20,7 @@
 
         </tr>
         <tr th:each="bird : ${allBirds}">
-            <td th:text="${bird.birdSpecies}"></td>
+            <td><a th:href="@{/bird/details/{birdSpecies}(birdSpecies =${bird.birdSpecies})}" th:text="${bird.birdSpecies}"></a></td>
             <td th:text="${bird.birdGenus}"></td>
             <td th:text="${bird.birdFoods}"></td>
             <td th:text="${bird.mostObservedCopiesInADay}"></td>

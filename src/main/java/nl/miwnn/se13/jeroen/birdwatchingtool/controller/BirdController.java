@@ -75,6 +75,18 @@ public class BirdController {
         return "birdForm";
     }
 
+    @GetMapping("/bird/details/{birdSpecies}")
+    private String showBirdDetails(@PathVariable("birdSpecies") String birdSpecies, Model model){
+        Optional<Bird> bird = birdRepository.findByBirdSpecies(birdSpecies);
+
+        if (bird.isEmpty()) {
+            return "redirect:/bird";
+        }
+
+        model.addAttribute("birdToBeShown", bird.get());
+        return "birdDetail";
+    }
+
 
 
 
